@@ -5,8 +5,6 @@ import { Filters } from './bus/filters';
 // Hooks
 import { useForecastFetch } from './bus/forecast/hooks/useForecastFetch';
 
-
-
 export const App = () => {
   useForecastFetch();
 

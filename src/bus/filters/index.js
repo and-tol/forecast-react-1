@@ -11,7 +11,6 @@ export const Filters = () => {
     isReset,
     inputCloudy,
     inputSunny,
-    setFiltered,
     temp,
     minTemper,
     maxTemper,

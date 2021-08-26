@@ -8,10 +8,13 @@
   margin: 0;
   box-sizing: border-box;
 }
+html {
+  min-height: 100%;
+}
 
 body {
   background-image: url("../assets/bg.png");
-  background-size: inherit;
+  background-size: cover;
 }
 
 main {

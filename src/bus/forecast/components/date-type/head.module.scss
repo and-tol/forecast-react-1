@@ -9,17 +9,17 @@
 
 .cloudy {
   width: 114px;
-  background-image: url("../../../../assets/weather-icon-cloudy.png");
+  background-image: url('../../../../assets/weather-icon-cloudy.png');
 }
 
 .rainy {
   width: 100px;
-  background-image: url("../../../../assets/weather-icon-rainy.png");
+  background-image: url('../../../../assets/weather-icon-rainy.png');
 }
 
 .sunny {
   width: 88px;
-  background-image: url("../../../../assets/weather-icon-sunny.png");
+  background-image: url('../../../../assets/weather-icon-sunny.png');
 }
 
 .icon {
@@ -49,5 +49,13 @@
   font-weight: 200;
   font-size: 14px;
   color: $color1;
+  text-transform: uppercase;
+}
+
+.spinner {
+  color: $color1;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
   text-transform: uppercase;
 }

@@ -19,28 +19,28 @@ export const forecastActions = Object.freeze({
       type: types.FORECAST_STOP_FETCHING,
     };
   },
-  fill: (payload) => {
+  fill: payload => {
     return {
       type: types.FORECAST_FILL,
       payload,
     };
   },
-  setFetchingError: (error) => {
+  setFetchingError: error => {
     return {
       type: types.FORECAST_SET_FETCHING_ERROR,
       error: true,
       payload: error,
     };
   },
-  setSelectedDate: (payload) => {
+  setSelectedDate: payload => {
     return {
       type: types.FORECAST_SET_SELECTED_DAY,
-      payload: payload
+      payload: payload,
     };
   },
 
   // Async
-  fetchAsync: () => async (dispatch) => {
+  fetchAsync: () => async dispatch => {
     dispatch(forecastActions.startFetching());
 
     const response = await api.forecast.fetch();
@@ -50,8 +50,9 @@ export const forecastActions = Object.freeze({
 
       // Adding property isSelectedDay for today
       const today = moment().utc(3).format('D MMMM');
-      data.map((el) => {
+      data.map(el => {
         const day = moment(el.day).utc(3).format('D MMMM');
+
         if (day === today) {
           el.isSelectedDay = true;
         } else {

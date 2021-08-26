@@ -7,14 +7,13 @@ import 'moment/locale/ru';
 // Actions
 import { forecastActions } from '../../forecast/actions';
 import { filtersActions } from '../actions';
-// Actions
 // Styles
 import Styles from '../styles.module.scss';
 
-export const useFilters = (props) => {
+export const useFilters = props => {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
-  const forecast = useSelector((state) => state.forecast);
+  const filters = useSelector(state => state.filters);
+  const forecast = useSelector(state => state.forecast);
 
   const {
     filteredData, // null
@@ -26,7 +25,6 @@ export const useFilters = (props) => {
     isReset, // false,
     isError, // false,
     setFiltered, // false,
-    selectedDay, // null
   } = filters;
 
   /**
@@ -52,17 +50,17 @@ export const useFilters = (props) => {
    * * Input min/max temperature
    */
   const [temp, setTemperature] = useState({
-    ['min-temperature']: '',
-    ['max-temperature']: '',
+    'min-temperature': '',
+    'max-temperature': '',
   });
 
   const minTemper = useRef('');
   const maxTemper = useRef('');
 
-  const handleChangeTemps = (event) => {
+  const handleChangeTemps = event => {
     event.persist();
 
-    setTemperature((prevTemperature) => {
+    setTemperature(prevTemperature => {
       return {
         ...prevTemperature,
         [event.target.id]: event.target.value,
@@ -82,14 +80,10 @@ export const useFilters = (props) => {
     let cloudyDate = [];
 
     if (isSunny) {
-      sunnyDate = forecast.data.filter(
-        (date) => date.type === inputSunny.current.dataset.type
-      );
+      sunnyDate = forecast.data.filter(date => date.type === inputSunny.current.dataset.type);
     }
     if (isCloudy) {
-      cloudyDate = forecast.data.filter(
-        (date) => date.type === inputCloudy.current.dataset.type
-      );
+      cloudyDate = forecast.data.filter(date => date.type === inputCloudy.current.dataset.type);
     }
 
     const filteredTypeDates = [...sunnyDate, ...cloudyDate];
@@ -102,33 +96,21 @@ export const useFilters = (props) => {
 
     let filteredTemperatureDates = [];
 
-    const tempMinDates =
-      minT !== ''
-        ? forecast.data.filter((date) => date.temperature >= minT)
-        : [];
-    const tempMaxDates =
-      maxT !== ''
-        ? forecast.data.filter((date) => date.temperature <= maxT)
-        : [];
+    const tempMinDates = minT !== '' ? forecast.data.filter(date => date.temperature >= minT) : [];
+    const tempMaxDates = maxT !== '' ? forecast.data.filter(date => date.temperature <= maxT) : [];
 
-    const tempMinOfDates = forecast.data
-      .map((date) => date.temperature)
-      .sort((a, b) => a - b)[0];
+    const tempMinOfDates = forecast.data.map(date => date.temperature).sort((a, b) => a - b)[0];
 
-    const tempMaxOfDates = forecast.data
-      .map((date) => date.temperature)
-      .sort((a, b) => b - a)[0];
+    const tempMaxOfDates = forecast.data.map(date => date.temperature).sort((a, b) => b - a)[0];
 
     if (minT !== '' || maxT !== '') {
       if (Number(minT) === Number(maxT)) {
-        filteredTemperatureDates = forecast.data.filter((date) => {
+        filteredTemperatureDates = forecast.data.filter(date => {
           return date.temperature === Number(maxT);
         });
       }
       if (minT < maxT) {
-        filteredTemperatureDates = tempMinDates.filter((date) =>
-          tempMaxDates.includes(date)
-        );
+        filteredTemperatureDates = tempMinDates.filter(date => tempMaxDates.includes(date));
       }
       if (Number(minT) > Number(maxT)) {
         filteredTemperatureDates = [...tempMinDates, ...tempMaxDates];
@@ -156,9 +138,7 @@ export const useFilters = (props) => {
     let filteredAllDates = [];
 
     if (filteredTypeDates.length && filteredTemperatureDates.length) {
-      filteredAllDates = filteredTemperatureDates.filter((date) =>
-        filteredTypeDates.includes(date)
-      );
+      filteredAllDates = filteredTemperatureDates.filter(date => filteredTypeDates.includes(date));
     }
     if (filteredTypeDates && !filteredTemperatureDates.length) {
       if (
@@ -191,15 +171,15 @@ export const useFilters = (props) => {
     inputCloudy.current.classList.remove(`${Styles['selected']}`);
     // resetting temperature input value
     setTemperature({
-      ['min-temperature']: '',
-      ['max-temperature']: '',
+      'min-temperature': '',
+      'max-temperature': '',
     });
 
     dispatch(filtersActions.reset());
 
     const today = moment().utc().format('D MMMM');
 
-    const newData = forecast.data.map((el) => {
+    const newData = forecast.data.map(el => {
       const day = moment(el.day).utc().format('D MMMM');
       if (day === today) {
         el.isSelectedDay = true;

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Helpers
@@ -17,7 +16,7 @@ export const Forecast = () => {
   const dispatch = useDispatch();
 
   const { data, isFetching } = useSelector(state => state.forecast);
-  const { filteredData, isFilter, setFiltered } = useSelector(state => state.filters);
+  const { filteredData } = useSelector(state => state.filters);
 
   if (!isFetching && data && data.length) {
     for (let i = 0; i < 7; i++) {
@@ -30,9 +29,6 @@ export const Forecast = () => {
       week.push(filteredData[i]);
     }
   }
-  console.log('forecast data>>>>', data);
-  console.log('filtered data>>>>', filteredData);
-  console.log('week>>>>', week);
 
   const [newWeek, setWeek] = useState(!isFetching && week.length && week);
 
@@ -50,8 +46,6 @@ export const Forecast = () => {
 
     setWeek(newWeek);
   };
-
-  // const currentWeek =
 
   const daysJSX =
     !isFetching &&
@@ -77,8 +71,4 @@ export const Forecast = () => {
       <div className={Styles['forecast']}>{daysJSX}</div>
     </>
   );
-};
-
-Forecast.propTypes = {
-  data: PropTypes.array,
 };
