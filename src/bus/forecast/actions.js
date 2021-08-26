@@ -50,6 +50,8 @@ export const forecastActions = Object.freeze({
 
       // Adding property isSelectedDay for today
       const today = moment().utc(3).format('D MMMM');
+
+      /* eslint-disable array-callback-return */
       data.map(el => {
         const day = moment(el.day).utc(3).format('D MMMM');
 
