@@ -1,0 +1,98 @@
+@import '../../style/palette';
+
+.filter {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.checkbox {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: $color1;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
+.checkbox::after {
+  content: '';
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: solid 1px $color1;
+  border-radius: 3px;
+  margin-left: 14px;
+}
+
+.checkbox.selected::before {
+  content: '✓';
+  position: absolute;
+  right: 7px;
+}
+
+.custom-input {
+  margin-bottom: 26px;
+}
+
+.custom-input label {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: $color1;
+  margin-right: 14px;
+}
+
+.custom-input input {
+  border-bottom: solid 1px $color1;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background: transparent;
+  width: 40px;
+  outline: none;
+  color: $color1;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+}
+
+button {
+  background-color: $color2;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: $color1;
+  text-transform: uppercase;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: $color3;
+}
+
+.filter button:disabled {
+    opacity: .3;
+}
+
+.filter button:disabled:hover {
+    cursor: auto;
+    background-color: #c584bc;
+}

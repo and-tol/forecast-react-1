@@ -1,0 +1,85 @@
+@import '../../../../style/palette';
+
+.day {
+  position: relative;
+  width: 130px;
+  height: 204px;
+  background-color: $color4;
+  color: $color1;
+  padding-top: 35px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color5;
+  }
+}
+
+.day.selected {
+  background-color: $color5;
+}
+
+.day p {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 90px;
+}
+
+.day span::after {
+  margin-left: 5px;
+  transform: translateY(-15px);
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 6px;
+  border: solid 1px $color1;
+  border-radius: 50%;
+}
+
+.day span {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  font-size: 30px;
+}
+
+.day.cloudy::before {
+  position: absolute;
+  top: 86px;
+  content: '';
+  display: block;
+  width: 62px;
+  height: 37px;
+  background-image: url("../../../../assets/weather-icon-cloudy.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.day.rainy::before {
+  position: absolute;
+  top: 86px;
+  content: '';
+  display: block;
+  width: 43px;
+  height: 37px;
+  background-image: url("../../../../assets/weather-icon-rainy.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.day.sunny::before {
+  position: absolute;
+  top: 86px;
+  content: '';
+  display: block;
+  width: 37px;
+  height: 37px;
+  background-image: url("../../../../assets/weather-icon-sunny.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
